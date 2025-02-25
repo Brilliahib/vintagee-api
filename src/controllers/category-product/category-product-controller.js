@@ -23,7 +23,9 @@ const createCategoryProduct = async (req, res) => {
     return res
       .status(201)
       .json(successResponse(data, "Category project created successfully"));
-  } catch (error) {}
+  } catch (error) {
+    return res.status(500).json(errorResponse(error.message));
+  }
 };
 
 const updateCategoryProduct = async (req, res) => {
@@ -39,7 +41,9 @@ const updateCategoryProduct = async (req, res) => {
     return res
       .status(200)
       .json(successResponse(data, "Category project updated successfully"));
-  } catch (error) {}
+  } catch (error) {
+    return res.status(500).json(errorResponse(error.message));
+  }
 };
 
 const deleteCategoryProduct = async (req, res) => {
@@ -49,7 +53,9 @@ const deleteCategoryProduct = async (req, res) => {
     return res
       .status(200)
       .json(successResponse(null, "Category product deleted successfully"));
-  } catch (error) {}
+  } catch (error) {
+    return res.status(500).json(errorResponse(error.message));
+  }
 };
 
 module.exports = {
