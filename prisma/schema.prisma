@@ -20,7 +20,7 @@ model User{
   password String
   name String
   role String
-  phone String
+  phone String?
   image_url String?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
