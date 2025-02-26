@@ -35,9 +35,12 @@ const createProduct = async (req, res) => {
 
     const image = req.file;
 
+    const userId = req.user.id;
+
     const data = await productService.createProductService(
       productValidation,
-      image
+      image,
+      userId
     );
 
     return res

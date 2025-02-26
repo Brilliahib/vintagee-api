@@ -2,6 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 const { errorResponse } = require("../../utils/meta");
 const prisma = new PrismaClient();
 const cloudinary = require("cloudinary").v2;
+const uploadImageToCloudinary = require("../upload/upload-cloudinary");
 
 // Disconnect Prisma client when done
 const disconnectPrisma = async () => {
@@ -30,12 +31,12 @@ const getDetailProductService = async (id) => {
   }
 };
 
-const createProductService = async (data, file) => {
+const createProductService = async (data, file, user_id) => {
   if (!file) {
     throw new Error("Image file is required");
   }
 
-  const typeId = data.category_project_id;
+  const typeId = data.category_id;
 
   if (!typeId || typeof typeId !== "string") {
     throw new Error("Invalid type_id");
@@ -47,10 +48,10 @@ const createProductService = async (data, file) => {
   try {
     const result = await prisma.product.create({
       data: {
-        user_id: data.user_id,
+        user_id,
         category_id: data.category_id,
         name: data.name,
-        price: data.price,
+        price: parseFloat(data.price),
         description: data.description,
         size: data.size,
         condition: data.condition,
