@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get("/", productController.getAllProduct);
 
-router.get(":/id", productController.getDetailProduct);
+router.get("/:id", productController.getDetailProduct);
 
 router.use(authMiddleware);
 

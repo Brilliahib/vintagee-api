@@ -11,7 +11,23 @@ const disconnectPrisma = async () => {
 
 const getAllProductService = async () => {
   try {
-    const result = await prisma.product.findMany();
+    const result = await prisma.product.findMany({
+      select: {
+        id: true,
+        image_url: true,
+        name: true,
+        price: true,
+        size: true,
+        condition: true,
+        created_at: true,
+        user: {
+          select: {
+            name: true,
+            image_url: true,
+          },
+        },
+      },
+    });
     return result;
   } catch (error) {
     throw new Error(error.message);
@@ -23,6 +39,27 @@ const getDetailProductService = async (id) => {
     const result = await prisma.product.findUnique({
       where: {
         id,
+      },
+      select: {
+        id: true,
+        image_url: true,
+        name: true,
+        price: true,
+        size: true,
+        description: true,
+        condition: true,
+        created_at: true,
+        category: {
+          select: {
+            name: true,
+          },
+        },
+        user: {
+          select: {
+            name: true,
+            image_url: true,
+          },
+        },
       },
     });
     return result;
