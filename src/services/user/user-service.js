@@ -50,6 +50,19 @@ const getUserById = async (userId) => {
   }
 };
 
+const getProductUser = async (userId) => {
+  try {
+    const result = await prisma.product.findMany({
+      where: {
+        user_id: userId,
+      },
+    });
+    return result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const deleteUser = async (userId) => {
   try {
     const result = await prisma.user.delete({
@@ -168,4 +181,5 @@ module.exports = {
   deleteUser,
   updateUser,
   getAllUsers,
+  getProductUser,
 };

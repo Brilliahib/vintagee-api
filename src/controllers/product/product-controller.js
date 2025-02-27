@@ -1,4 +1,5 @@
 const productService = require("../../services/product/product-service");
+const userService = require("../../services/user/user-service");
 const { successResponse, errorResponse } = require("../../utils/meta");
 
 const getAllProduct = async (req, res) => {
@@ -92,10 +93,48 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+const getProductByCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await productService.getProductByCategoryService(id);
+
+    if (!data) {
+      return res.status(404).json(errorResponse(null, "Product not found"));
+    }
+
+    return res
+      .status(200)
+      .json(
+        successResponse(data, "Product by category retrieved successfully")
+      );
+  } catch (error) {
+    return res.status(500).json(errorResponse(error.message));
+  }
+};
+
+const getProductUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await userService.getProductUser(id);
+
+    if (!data) {
+      return res.status(404).json(errorResponse(null, "Product not found"));
+    }
+
+    return res
+      .status(200)
+      .json(successResponse(data, "Product user retrieved successfully"));
+  } catch (error) {
+    return res.status(500).json(errorResponse(error.message));
+  }
+};
+
 module.exports = {
   getAllProduct,
   getDetailProduct,
   createProduct,
   updateProduct,
   deleteProduct,
+  getProductByCategory,
+  getProductUser,
 };
