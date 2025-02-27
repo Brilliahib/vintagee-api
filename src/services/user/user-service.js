@@ -43,6 +43,14 @@ const getUserById = async (userId) => {
       where: {
         id: userId,
       },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        phone: true,
+        image_url: true,
+        created_at: true,
+      },
     });
     return result;
   } catch (error) {

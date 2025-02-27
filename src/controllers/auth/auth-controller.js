@@ -176,4 +176,5 @@ module.exports = {
   registerUser,
   updateUser,
   getAuthUser,
+  withoutPasswordHandler,
 };
