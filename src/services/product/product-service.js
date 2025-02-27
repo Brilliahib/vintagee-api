@@ -184,6 +184,19 @@ const deleteProductService = async (id) => {
   }
 };
 
+const getProductByCategoryService = async (categoryId) => {
+  try {
+    const result = await prisma.product.findMany({
+      where: {
+        category_id: categoryId,
+      },
+    });
+    return result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 module.exports = {
   disconnectPrisma,
   getAllProductService,
@@ -191,4 +204,5 @@ module.exports = {
   createProductService,
   updateProductService,
   deleteProductService,
+  getProductByCategoryService,
 };

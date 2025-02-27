@@ -12,6 +12,10 @@ router.get("/", productController.getAllProduct);
 
 router.get("/:id", productController.getDetailProduct);
 
+router.get("/category/:id", productController.getProductByCategory);
+
+router.get("/user/:id", productController.getProductUser);
+
 router.use(authMiddleware);
 
 router.post(
