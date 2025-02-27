@@ -48,6 +48,7 @@ const getDetailProductService = async (id) => {
         size: true,
         description: true,
         condition: true,
+        brand: true,
         created_at: true,
         category: {
           select: {
