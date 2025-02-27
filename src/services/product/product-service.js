@@ -57,6 +57,7 @@ const getDetailProductService = async (id) => {
         },
         user: {
           select: {
+            id: true,
             name: true,
             image_url: true,
           },
