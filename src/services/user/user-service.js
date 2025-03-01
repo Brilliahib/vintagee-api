@@ -15,7 +15,6 @@ const createUser = async (data) => {
         email: data.email,
         password: data.password,
         phone: data.phone ?? null,
-        role: data.role,
       },
     });
     return result;
