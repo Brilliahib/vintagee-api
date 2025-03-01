@@ -33,13 +33,13 @@ const generateToken = (payload) =>
 
 const registerUser = async (req, res) => {
   try {
-    const { error } = validateRegister(req.body);
+    const { error, value } = validateRegister(req.body);
     if (error) {
       const errorMessage = `${error}`;
       return res.status(400).json({ statusCode: 400, error: errorMessage });
     }
 
-    const existingUser = await userService.getUserByEmail(req.body.email);
+    const existingUser = await userService.getUserByEmail(value.email);
     if (existingUser) {
       return res
         .status(400)
@@ -48,14 +48,14 @@ const registerUser = async (req, res) => {
 
     const saltRounds = 10;
     const salt = bcrypt.genSaltSync(saltRounds);
-    const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+    const hashedPassword = bcrypt.hashSync(value.password, salt);
 
     const newUser = await userService.createUser({
-      name: req.body.name,
-      email: req.body.email,
+      name: value.name,
+      email: value.email,
       password: hashedPassword,
-      phone: req.body.phone,
-      role: req.body.role,
+      phone: value.phone,
+      role: "user",
     });
 
     const token = generateToken(newUser);
