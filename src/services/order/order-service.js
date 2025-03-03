@@ -14,6 +14,9 @@ const getAllOrderService = async (userId) => {
       where: {
         user_id: userId,
       },
+      include: {
+        product: true,
+      },
     });
     return result;
   } catch (error) {
@@ -26,6 +29,9 @@ const getDetailOrderService = async (id) => {
     const result = await prisma.order.findUnique({
       where: {
         id,
+      },
+      include: {
+        product: true,
       },
     });
     return result;
@@ -107,6 +113,9 @@ const getRequestOrderService = async (id) => {
         product: {
           user_id: id,
         },
+      },
+      include: {
+        product: true,
       },
     });
     return result;
