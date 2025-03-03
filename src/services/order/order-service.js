@@ -1,4 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
+const uploadImageToCloudinary = require("../upload/upload-cloudinary");
 const prisma = new PrismaClient();
 const cloudinary = require("cloudinary").v2;
 
@@ -99,6 +100,21 @@ const updateOrderService = async (file, id) => {
   }
 };
 
+const getRequestOrderService = async (id) => {
+  try {
+    const result = await prisma.order.findMany({
+      where: {
+        product: {
+          user_id: id,
+        },
+      },
+    });
+    return result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const confirmPaymentOrderService = async (id) => {
   try {
     const result = await prisma.order.update({
@@ -138,4 +154,5 @@ module.exports = {
   updateOrderService,
   deleteOrderService,
   confirmPaymentOrderService,
+  getRequestOrderService,
 };

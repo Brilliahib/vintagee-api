@@ -7,6 +7,7 @@ const categoryProductRoutes = require("./routes/category-product/category-produc
 const productRoutes = require("./routes/product/product-routes");
 const userRoutes = require("./routes/user/user-route");
 const exchangeRoutes = require("./routes/exchange/exchange-route");
+const orderRoutes = require("./routes/order/order-route");
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use("/api/category-product", categoryProductRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/exchange", exchangeRoutes);
+app.use("/api/order", orderRoutes);
 
 app.listen(PORT, () => {
   console.log("Express running in port" + PORT);
