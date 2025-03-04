@@ -48,6 +48,11 @@ const getAllProductUserService = async (id) => {
         size: true,
         condition: true,
         created_at: true,
+        category: {
+          select: {
+            name: true,
+          },
+        },
         user: {
           select: {
             name: true,
