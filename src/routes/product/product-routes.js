@@ -18,7 +18,7 @@ router.get("/user/:id", productController.getProductUser);
 
 router.use(authMiddleware);
 
-router.get("/user", productController.getAllProductUser);
+router.get("/users/list", productController.getAllProductUser);
 
 router.post(
   "/",
