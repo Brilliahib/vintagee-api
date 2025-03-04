@@ -75,6 +75,12 @@ const getAllRequestExchangeService = async (id) => {
             },
           },
         },
+        user: {
+          select: {
+            name: true,
+            image_url: true,
+          },
+        },
       },
     });
     return result;
