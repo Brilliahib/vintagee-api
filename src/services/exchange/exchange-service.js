@@ -77,7 +77,11 @@ const getDetailExchangeService = async (id) => {
         id,
       },
       include: {
-        product: true,
+        product: {
+          include: {
+            category: true,
+          },
+        },
       },
     });
     return result;

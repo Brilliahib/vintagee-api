@@ -15,7 +15,11 @@ const getAllOrderService = async (userId) => {
         user_id: userId,
       },
       include: {
-        product: true,
+        product: {
+          include: {
+            category: true,
+          },
+        },
       },
     });
     return result;
@@ -31,7 +35,11 @@ const getDetailOrderService = async (id) => {
         id,
       },
       include: {
-        product: true,
+        product: {
+          include: {
+            category: true,
+          },
+        },
       },
     });
     return result;
@@ -115,7 +123,11 @@ const getRequestOrderService = async (id) => {
         },
       },
       include: {
-        product: true,
+        product: {
+          include: {
+            category: true,
+          },
+        },
       },
     });
     return result;
