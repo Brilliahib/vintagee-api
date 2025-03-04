@@ -20,6 +20,8 @@ router.post(
 
 router.get("/request", exchangeController.getAllRequestExchange);
 
+router.get("/pending", exchangeController.getAllRequestPendingExchange);
+
 router.get("/detail/:id", exchangeController.getDetailExchange);
 
 router.put("/confirm/:id", exchangeController.confirmExchange);
