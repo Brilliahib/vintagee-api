@@ -18,6 +18,8 @@ router.get("/user/:id", productController.getProductUser);
 
 router.use(authMiddleware);
 
+router.get("/user", productController.getAllProductUser);
+
 router.post(
   "/",
   upload.single("image_url"),

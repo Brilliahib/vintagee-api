@@ -34,6 +34,34 @@ const getAllProductService = async () => {
   }
 };
 
+const getAllProductUserService = async (id) => {
+  try {
+    const result = await prisma.product.findMany({
+      where: {
+        user_id: id,
+      },
+      select: {
+        id: true,
+        image_url: true,
+        name: true,
+        price: true,
+        size: true,
+        condition: true,
+        created_at: true,
+        user: {
+          select: {
+            name: true,
+            image_url: true,
+          },
+        },
+      },
+    });
+    return result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 const getDetailProductService = async (id) => {
   try {
     const result = await prisma.product.findUnique({
@@ -206,4 +234,5 @@ module.exports = {
   updateProductService,
   deleteProductService,
   getProductByCategoryService,
+  getAllProductUserService,
 };
