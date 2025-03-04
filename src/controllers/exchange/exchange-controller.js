@@ -26,6 +26,19 @@ const getAllRequestExchange = async (req, res) => {
   }
 };
 
+const getAllRequestPendingExchange = async (req, res) => {
+  try {
+    const id = req.user.id;
+
+    const data = await exchangeService.getAllRequestPendingExchangeService(id);
+    return res
+      .status(200)
+      .json(successResponse(data, "Exchange pending retrieved successfully"));
+  } catch (error) {
+    return res.status(500).json(errorResponse(error.message));
+  }
+};
+
 const getDetailExchange = async (req, res) => {
   try {
     const { id } = req.params;
@@ -82,4 +95,5 @@ module.exports = {
   createExchange,
   getAllRequestExchange,
   confirmExchange,
+  getAllRequestPendingExchange,
 };
