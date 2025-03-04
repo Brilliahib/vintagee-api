@@ -13,6 +13,18 @@ const getAllProduct = async (req, res) => {
   }
 };
 
+const getAllProductUser = async (req, res) => {
+  const { id } = req.user.id;
+  try {
+    const data = await productService.getAllProductUserService(id);
+    return res
+      .status(200)
+      .json(successResponse(data, "Product user retrieved successfully"));
+  } catch (error) {
+    return res.status(500).json(errorResponse(error.message));
+  }
+};
+
 const getDetailProduct = async (req, res) => {
   const { id } = req.params;
   try {
@@ -137,4 +149,5 @@ module.exports = {
   deleteProduct,
   getProductByCategory,
   getProductUser,
+  getAllProductUser,
 };
