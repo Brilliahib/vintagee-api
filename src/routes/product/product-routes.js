@@ -20,20 +20,10 @@ router.use(authMiddleware);
 
 router.get("/users/list", productController.getAllProductUser);
 
-router.post(
-  "/",
-  upload.single("image_url"),
-  adminMiddleware,
-  productController.createProduct
-);
+router.post("/", upload.single("image_url"), productController.createProduct);
 
-router.put(
-  "/:id",
-  upload.single("image_url"),
-  adminMiddleware,
-  productController.updateProduct
-);
+router.put("/:id", upload.single("image_url"), productController.updateProduct);
 
-router.delete("/:id", adminMiddleware, productController.deleteProduct);
+router.delete("/:id", productController.deleteProduct);
 
 module.exports = router;
