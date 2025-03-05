@@ -85,6 +85,7 @@ const getDetailProductService = async (id) => {
         created_at: true,
         category: {
           select: {
+            id: true,
             name: true,
           },
         },
